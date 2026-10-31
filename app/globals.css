@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+body {
+  background-color: #050705;
+  color: #F5FFF8;
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(0, 255, 136, 0.25); color: #F5FFF8; }
+
+.pub-root :where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #00FF88 !important;
+  outline-offset: 3px;
+}
+
+.cyber-border { border: 1px solid rgba(0, 255, 136, 0.15); }
+
+.cyber-card {
+  position: relative;
+  background-color: #0D1510;
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.cyber-card::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(220px circle at var(--mx, -1000px) var(--my, -1000px), rgba(0, 255, 136, 0.08), transparent 70%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.cyber-card:hover::before { opacity: 1; }
+.cyber-card > * { position: relative; }
+.button-arrow { transition: transform 0.2s ease; }
+.button-with-arrow:hover .button-arrow { transform: translateX(3px); }
+.cyber-card:hover {
+  border-color: rgba(0, 255, 136, 0.38);
+  box-shadow: 0 0 28px -10px rgba(0, 255, 136, 0.22);
+}
+
+.bg-cyber-grid { background-size: 40px 40px; }
+
+.pub-root .public-section-divider {
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-root .public-scroll-progress,
+  .pub-root .public-terminal-cursor {
+    display: none;
+  }
+
+  .pub-root .public-roadmap-progress {
+    transform: scaleY(1) !important;
+  }
+
+  .pub-root .public-hero-item,
+  .pub-root .public-reveal,
+  .pub-root .public-reveal-group > .public-reveal-item,
+  .pub-root .public-roadmap-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .pub-root .public-roadmap-marker {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-root *,
+  .pub-root *::before,
+  .pub-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
